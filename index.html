@@ -332,10 +332,16 @@
     id="answerOverlay"
     aria-hidden="true"
   >
+    <img
+      id="answerImage"
+      class="answer-canvas"
+      alt="全問正解画像"
+      style="-webkit-touch-callout: default; user-select: auto; -webkit-user-select: auto; -webkit-user-drag: auto;"
+    >
+
     <canvas
       id="answerCanvas"
-      class="answer-canvas"
-      aria-label="全問正解画像"
+      style="display: none;"
     ></canvas>
   </div>
 
@@ -402,6 +408,7 @@
 
     const answerOverlay = document.getElementById("answerOverlay");
     const answerCanvas = document.getElementById("answerCanvas");
+    const answerImage = document.getElementById("answerImage");
 
 
     function formatCorrectDateTime(date) {
@@ -532,6 +539,9 @@
           );
 
           ctx.shadowBlur = 0;
+
+          answerImage.src =
+            canvas.toDataURL("image/jpeg", 0.95);
 
           resolve();
         };
